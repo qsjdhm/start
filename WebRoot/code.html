@@ -1,0 +1,435 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">  
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">   
+	<head>   
+		<title>起步 | 专注于web前端开发</title>   
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />   
+		<meta http-equiv="Content-Language" content="zh-CN" />   
+		<meta name="keywords" content="前端, 产品, 设计, javascript, jquery, css, html, czlqibu, 起步, java, j2ee, 扁平化, 代码, 笔记, web前端, web起步, 从这里起步" />
+		<meta name="description" content="起步是一个优秀的web前端网站" />
+		
+		<!-- 响应式声明开始 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<!-- 响应式声明结束 -->
+		<!-- <meta name="author" content="skydao" />   
+		<meta name="Copyright" content="skydao" />   
+		<meta name="description" content="描述内容" />  
+		<meta http-equiv="refresh" content="10;url=http://yourlink" />  
+		<meta name="keywords" content="php mysql html css javascript ajax java java ee"/>  
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />  
+		<meta name="viewport" content="width=device-width" />   --> 
+		<link rel= "shortcut icon" href= "image/foot.png" />
+		<link rel="stylesheet" type="text/css" href="plugjs/bootstrap-ui/css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="plugjs/semantic-ui/packaged/css/semantic.css" />
+		<link rel="stylesheet" type="text/css" href="plugjs/scrollup-master/css/themes/image.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="css/new_common.css" />
+		<style type="text/css" media="print, screen">  
+			.ui.large.vertical.menu{
+				width:100%;
+			}
+			.ui.large.menu .item{
+				font-size:1.425rem;
+			}
+			.note_classify .ui.label{
+				font-size:1.1125rem;
+			}
+			.col-md-3{
+				padding-left:0px;
+			}
+			#articleItems .ui.segment{
+				padding-top:0px;
+			}
+			#codeType{
+				background-color: #FFFFFF;
+			    border-bottom: 2px solid #E2E2E9;
+			    border-radius: 3px;
+			    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+			}
+    
+		</style>   
+		<script src="plugjs/semantic-ui/javascript/jquery-1.10.2.min.js" type="text/javascript"></script>
+		
+		<!-- <script src="js/jquery-1.7.2.js" type="text/javascript"></script> -->
+		<script src="plugjs/bootstrap-ui/js/bootstrap.js" type="text/javascript"></script> 
+		
+		<script src="plugjs/semantic-ui/javascript/tablesort.js"></script>
+		<script src="plugjs/semantic-ui/javascript/waypoints.js"></script>
+		<script src="plugjs/semantic-ui/javascript/semantic.js"></script>
+		<script src="plugjs/semantic-ui/javascript/semantic.min.js"></script>
+		<script type="text/javascript" src="plugjs/jquery.pagination-master/js/jquery.pagination.js"></script>
+		<script type="text/javascript" src="plugjs/scrollup-master/src/jquery.scrollUp.js"></script>
+		
+		<!-- 代码高亮格式化 -->
+		<script type="text/javascript" src="plugjs/syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
+		<script type="text/javascript" src="plugjs/syntaxhighlighter_3.0.83/scripts/shBrushJScript.js"></script>
+		<link type="text/css" rel="stylesheet" href="plugjs/syntaxhighlighter_3.0.83/styles/shCoreDefault.css"/>
+		
+		<script type="text/javascript">
+			var nodeTypeId = 0;
+			/* 左侧菜单的初始化开始 */
+		    semantic.menu = {};
+			// ready event
+			semantic.menu.ready = function() {
+			  // selector cache
+			  var
+			    $menuItem = $('.menu a.item, .menu .link.item'),
+			    $dropdown = $('.menu .dropdown'),
+			    // alias
+			    handler = {
+			
+			      activate: function() {
+			        if(!$(this).hasClass('dropdown')) {
+			          $(this)
+			            .addClass('active')
+			            .closest('.ui.menu')
+			            .find('.item')
+			              .not($(this))
+			              .removeClass('active');
+			
+						//添加菜单的点击事件
+						console.info(this);
+						// 赋值全局变量
+						var classifyTypeId = $(this).attr("classifyTypeId");
+						nodeTypeId = $(this).attr("classifyTypeId");
+						// 重新创建笔记
+						queryNoteDataLengh($(this).attr("classifyTypeId"));
+						
+						$(".item").find("div").removeClass("teal");
+						$(this).find("div").addClass("teal");
+			        }
+			      }
+			
+			    };
+			
+			  $dropdown.dropdown({
+			      on: 'hover'
+			    });
+			
+			  $menuItem.on('click', handler.activate);
+			};
+			/* 左侧菜单的初始化结束 */
+			
+		
+			$(function(){
+				/* 顶置组件的初始化 */
+				$.scrollUp({
+			        scrollName: 'scrollUp', // Element ID
+			        scrollDistance: 300, // Distance from top/bottom before showing element (px)
+			        scrollFrom: 'top', // 'top' or 'bottom'
+			        scrollSpeed: 300, // Speed back to top (ms)
+			        easingType: 'linear', // Scroll to top easing (see http://easings.net/)
+			        animation: 'fade', // Fade, slide, none
+			        animationInSpeed: 200, // Animation in speed (ms)
+			        animationOutSpeed: 200, // Animation out speed (ms)
+			        scrollText: 'Scroll to top', // Text for element, can contain HTML
+			        scrollTitle: false, // Set a custom <a> title if required. Defaults to scrollText
+			        scrollImg: true, // Set true to use image
+			        activeOverlay: true, // Set CSS color to display scrollUp active point, e.g '#00FFFF'
+			        zIndex: 2147483647 // Z-Index for the overlay
+				});
+				
+				// 查询和标签匹配的个数
+				queryClassifyNum();
+				addSearchEvent();
+			});
+			
+			// 绑定搜索按钮
+			function addSearchEvent(){
+				// 添加搜索框点击事件
+				// 判断现在是否在移动设备上或屏幕小的情况下点击
+				if($(".pageTitle").css("width")!="320px"){  // 不是
+					$("#s").bind("focus",function(){
+						$(".search-liaosheji").animate({"top": "-14px","height":"24px"}, "slow");
+					});
+					$("#s").bind("blur",function(){
+						$(".search-liaosheji").animate({"top": "10px","height":"0px"}, "slow");
+					});
+				}else{  // 是
+					$("#s").bind("focus",function(){
+						$(".search-liaosheji").animate({"top": "-31px","height":"24px"}, "slow");
+					});
+					$("#s").bind("blur",function(){
+						$(".search-liaosheji").animate({"top": "-8px","height":"0px"}, "slow");
+					});
+				}
+				
+				$("#searchsubmit").bind("click",function(){
+					var keyword = $("#s").val();
+					window.open("search.html?word="+encodeURI(encodeURI(keyword)));  
+				});
+				
+				// 监听浏览器变化
+				$(window).resize(function(){
+					if($(".pageTitle").css("width")!="320px"){  // 不是
+						// 解除事件
+						$('#s').unbind('focus').unbind('blur');
+						// 需要修改图片当前top值
+						$(".search-liaosheji").css({"top": "10px","height":"0px"});
+						$('#s').blur();  // 移除焦点
+						$("#s").bind("focus",function(){
+							$(".search-liaosheji").animate({"top": "-14px","height":"24px"}, "slow");
+						});
+						$("#s").bind("blur",function(){
+							$(".search-liaosheji").animate({"top": "10px","height":"0px"}, "slow");
+						});
+					}else{
+						$('#s').unbind('focus').unbind('blur');
+						$(".search-liaosheji").css({"top":"-8px","height":"0px"});
+						$('#s').blur();  // 移除焦点
+						$("#s").bind("focus",function(){
+							$(".search-liaosheji").animate({"top": "-31px","height":"24px"}, "slow");
+						});
+						$("#s").bind("blur",function(){
+							$(".search-liaosheji").animate({"top": "-8px","height":"0px"}, "slow");
+						});
+					}
+				});
+
+				// 添加搜索回车事件
+				document.onkeydown=function(event){
+		            var e = event || window.event || arguments.callee.caller.arguments[0];
+		            if(e && e.keyCode==13){ // enter 键
+		            	// 搜索内容
+		            	$("#searchsubmit").click();
+		            }
+		        }; 
+			}
+			
+			// 查询和标签匹配的个数
+			function queryClassifyNum(){
+				// 查询和此标签有关系的文章和笔记
+				$.ajax({
+					type : "POST",
+					url: "PageAction?opeType=queryClassifyNum",
+					dataType:"json",
+					success: function(data) {
+						// 添加分类数据
+						addClassifyInfo(data.classifyData);
+					}
+				});
+			}
+			
+			// 添加分类信息
+			function addClassifyInfo(data){
+		    	$.each(data,function(k,v){
+		    		var item = '';
+		    		if(k===0){
+		    			item += '<a class="active item" id="nodeType'+v.Sort_ID+'" classifyTypeId="'+v.Sort_ID+'">';
+				    	item += '	<div class="ui teal label">'+v.Article_Length+'</div>';
+				    	item += v.Sort_Name;
+				    	item += '</a>';
+		    		}else{
+		    			item += '<a class="item" id="nodeType'+v.Sort_ID+'" classifyTypeId="'+v.Sort_ID+'">';
+				    	item += '	<div class="ui label">'+v.Article_Length+'</div>';
+				    	item += v.Sort_Name;
+				    	item += '</a>';
+		    		}
+			    	
+			    	$("#codeType").append(item);
+		    	});
+		    	
+		    	// 初始化分类组件
+		    	semantic.menu.ready();  
+		    	// 获取第一个分类ID  
+		    	var classifyTypeId = $("#codeType").find(".active").attr("classifytypeid");
+		    	// 查询分类下的数据总数
+				queryNoteDataLengh(classifyTypeId);
+			}
+			
+			// 查询分类下数据总长度
+			function queryNoteDataLengh(classifyTypeId){
+				$.ajax({
+					type : "POST",
+					url: "PageAction?opeType=queryAllLength&type="+classifyTypeId,
+					dataType:"json",
+					success: function(data) {
+					    createPage(data.length,classifyTypeId);  // 创建分页组件
+					}
+				});
+			}
+			
+			// 创建分页组件
+			function createPage(length,classifyTypeId){
+				// 初始化分页组件
+				$("#pagination").pagination(length, {  // 一共多少条数据
+					current_page : 0,  // 初始化时选中第几页数据  0为第一页
+					items_per_page : 10,  // 每页显示多少条数据
+					num_display_entries : 3,  // 显示页数
+					num_edge_entries : 0,
+					callback : function(page_id){
+						// 滚动条升顶
+						$(document).scrollTop(0); 
+						// 查询每页数据
+						queryAllPageData(parseInt(page_id)+1,10,150,classifyTypeId);
+					},
+					load_first_page : true,
+					prev_text : "上一页",
+					next_text : "下一页"
+				});
+			}
+			
+			// 查询文章（包含笔记）每页数据
+			function queryAllPageData(pageId, pageCount, showChar, classifyTypeId){
+				$.ajax({
+					type : "POST",
+					url: "PageAction?opeType=queryAllPageData&typeId="+classifyTypeId+"&pageId="+pageId+"&pageCount="+pageCount+"&contentLength="+showChar+"&textLength="+showChar,
+					dataType:"json",
+					success: function(data) {
+						// 组织页面展示的数据
+						orgItemsData(data.articleData);
+						// 添加完数据之后代码高亮
+				    	SyntaxHighlighter.highlight(); 
+					}
+				});
+			}
+			
+			// 查询和标签匹配的个数
+			function queryLikeLableLength(name){
+				var lableName = encodeURI(encodeURI(name));
+				window.open("topic.html?topic="+lableName);  
+			}
+			
+			// 组织页面展示的数据
+			function orgItemsData(data){
+				// 清楚所有笔记
+				$("#articleItemDiv").empty();
+				$.each(data, function(k,v){
+					// 组织标签的html代码
+					var tempArr = v.Aarticle_Label.split(",");
+					var labelItem = '';
+					for(var i=0; i<tempArr.length; i++){
+						if(i==0){
+							labelItem += '<a href="javascript:void(0)" onclick="queryLikeLableLength(\''+tempArr[i]+'\')">'+tempArr[i]+'</a>';
+						}else{
+							labelItem += '&nbsp;,&nbsp;<a href="javascript:void(0)" onclick="queryLikeLableLength(\''+tempArr[i]+'\')">'+tempArr[i]+'</a>';
+						}
+					}
+					
+					var item = '';
+					item += '<div id="item'+v.Article_ID+'" class="ui stacked segment">';
+					item += '	<h2 class="article_title">';
+					item += '		<a href="javascript:void(0)" onclick="openArticle('+v.Article_ID+')">'+v.Article_Title+'</a>&nbsp;&nbsp;';
+					item += '	<h2/>';
+					item += '	<div class="article_date">';
+					item += '		<span rel="sioc:has_creator" datatype="xsd:dateTime" content="2013-11-10T12:30:01+08:00" property="dc:date dc:created">';
+					item += '			发布时间 : '+v.Article_Date+'';
+					item += '		</span>';
+					item += '		&nbsp;&nbsp;in&nbsp;&nbsp;&nbsp;';
+					item += labelItem;
+					item += '	</div>';
+					item += '	<div id="artContent'+v.Article_ID+'" class="article_content"></div>';
+					item += '</div>';
+					$("#articleItemDiv").append(item);
+				});
+				
+				$.each(data, function(key,val){
+					var con = val.Article_Record.replace(/<img.*>.*<\/img>/ig,"");   // 过滤如<img></img>形式的图片元素
+					con = con.replace(/<img.*\/>/ig, "");   // 过滤如<img />形式的元素
+					$("#artContent"+val.Article_ID).html(con);
+				});
+			}
+			
+			// 打开一篇文章
+			function openArticle(id){
+				window.open("show.html?id="+id);  
+			}
+			
+			
+		</script>
+		
+	</head>  
+	<body>  
+		<div class="container bs-docs-container">
+			<!-- 版头 -->
+			<div class="row pageTitle">
+				<span class="logo">
+					<a rel="home" title="Just do IT" href="index.html">
+						<b class="bclass">Just do IT</b>
+					</a>
+					<i>专注于web前端开发，专注于用户体验</i> 
+				</span>
+				<span class="newsearch">
+					<b class="search-liaosheji" style=""></b>
+					<input id="s" class="input" type="text" style="color:#999" placeholder="搜索小贱鸡？"  />
+					<button id="searchsubmit" class="btn">搜索</button>
+				</span>
+			</div>
+			<!-- 菜单栏 -->
+			<div class="row" style="margin-top:10px;">
+				<header class="navbar navbar-inverse bs-docs-nav" role="banner">
+					<div class="container">
+						<div class="navbar-header">
+							<span class="navTips">网站导航</span>
+							<button class="navbar-toggle" data-target=".bs-navbar-collapse" data-toggle="collapse" type="button">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+						<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+							<ul class="nav navbar-nav">
+								<li><a href="index.html">首页</a></li>
+								<li><a href="product.html">产品</a></li>
+					      		<li><a href="design.html">设计</a></li>
+					      		<li><a href="front.html">前端</a></li>
+					      		<li><a style="color:#FF8322;padding:0 23px;" href="code.html">代码笔记</a></li>
+					      		<li><a href="joy.html">读书乐趣</a></li>
+					      		<li><a href="about.html">关于我</a></li>
+							</ul>
+						</nav>
+					</div>
+				</header>
+			</div>
+		</div>
+		
+		
+		
+		<div class="container bs-docs-container">
+			<div class="row">
+				<div class="col-md-3">
+					<div class="note_classify">
+						<div id="codeType" class="ui large vertical menu pointing">
+						  	
+						</div>
+					</div>
+				</div>
+			
+				<div id="articleItems" class="col-md-9" role="main">
+					<div id="articleItemDiv">
+					
+					</div>
+					<div class="pagination" id="pagination"></div>
+				</div>
+			</div>
+		</div>
+		<footer class="bs-footer" role="contentinfo">
+			<br/><br/><br/><br/><br/><br/><br/>
+		</footer>
+		
+		
+		
+		<script type="text/javascript">  
+			// 初始化菜单折叠组件
+			$('#myCollapsible').collapse({
+			  toggle: false
+			});
+		</script>  
+		
+	</body>  
+</html>  
+
+
+
+
+
+
+
+
+
+
+
+
+
+

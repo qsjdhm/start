@@ -1,0 +1,982 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">  
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">   
+	<head>   
+		<title>起步 | 专注于web前端开发</title>   
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />   
+		<meta http-equiv="Content-Language" content="zh-CN" />   
+		<meta name="keywords" content="前端, 产品, 设计, javascript, jquery, css, html, czlqibu, 起步, java, j2ee, 扁平化, 代码, 笔记, web前端, web起步, 从这里起步" />
+		<meta name="description" content="起步是一个优秀的web前端网站" />
+		
+		<!-- 响应式声明开始 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<!-- 响应式声明结束 -->
+		<!-- <meta name="author" content="skydao" />   
+		<meta name="Copyright" content="skydao" />   
+		<meta name="description" content="描述内容" />  
+		<meta http-equiv="refresh" content="10;url=http://yourlink" />  
+		<meta name="keywords" content="php mysql html css javascript ajax java java ee"/>  
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />  
+		<meta name="viewport" content="width=device-width" />   --> 
+		<link rel= "shortcut icon" href= "image/foot.png" />
+		<link rel="stylesheet" type="text/css" href="plugjs/bootstrap-ui/css/bootstrap_show.css" />
+		<link rel="stylesheet" type="text/css" href="plugjs/semantic-ui/packaged/css/semantic.css" />
+		<link rel="stylesheet" type="text/css" href="plugjs/scrollup-master/css/themes/image.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="css/new_common.css" />
+		 
+		<style type="text/css" media="print, screen">  
+		 
+		 .container{
+		 	vertical-align: middle !important;
+		 } 
+		 
+		 #sidebar .button{
+		 	font-size:1.8rem;
+		 }
+		 
+		 #post-msg2 > .item {
+		    font-size: 1.8rem;
+		}
+		
+		#replyBoxAri {
+		    max-width: 50em;
+		}
+		.ui.threaded.comments .comment .comments{
+			box-shadow: 0px 0 0 rgba(0, 0, 0, 0.05);
+		}
+		#collect{
+			background-image:linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
+			box-shadow:0 0 0 0px rgba(0, 0, 0, 0) inset;
+		}
+		#collect:hover{
+			background-color: #DB3E3A !important;
+		}
+		#articleItems h3,#articleItems .h3 {
+		    font-size: 28px;
+		    white-space: nowrap;
+		    width: 100%;                  /* IE6 需要定义宽度 */
+		    overflow: hidden;            
+		    -o-text-overflow: ellipsis;    /* Opera */
+		    text-overflow:    ellipsis;    /* IE, Safari (WebKit) */
+		    margin-top:10px;
+		}
+		#post-header{
+			text-align:center;
+		}
+		#articleDate{
+			font-size:14px;
+		}
+		#post-content a{
+			color:#008CBA;
+		}
+		#articleContent{
+			line-height: 24px;
+			font-size: 16px;
+		}
+		#articleTags, #articleTags a{
+			transition: all 0.3s;
+			-moz-transition: all 0.3s;
+			-webkit-transition: all 0.3s;
+			-o-transition: all 0.3s;
+			font-size:16px;
+		} 
+		#articleTags a:hover{
+			color:#333;
+		}
+		
+		form{  
+		  backface-visibility: hidden;  
+		}  
+		.form .input{  
+		  position: relative;  
+		  float: left;  
+		  margin: 10px;  
+		}  
+		.form input,.form textarea{  
+		  border: 1px solid #eee;  
+		  padding: 1.2em .5em;  
+		  outline: none;  
+		}  
+
+		textarea + label,input + label,.inputdefault {   
+		  position: absolute;  
+		  left:10px;  
+		  top:50%;  
+		  transform:translateY(-50%);  
+		  color:#aaa;  
+		  transition:all .2s ease;  
+		}  
+		
+		.field{
+			position: relative;  
+		    float: left;  
+		    margin: 10px; 
+		}
+		.foucs {  
+		  color: #52A5FB!important;  
+		  font-size: 0.75em!important;  
+		  top: 1%!important;  
+		  transform: none;  
+		}  
+
+		.blur-foucs {
+			color: #aaa;  
+		}
+
+		.not-empty + label {  
+		  color:#aaa;  
+		}  
+		.ui.form .field > label {
+		    color: #aaa;
+		    display: block;
+		    font-size: 1.2em; 
+		    margin: 0 0 0.3em;
+		}
+		.ui.form .field > input,.ui.form .field > textarea{
+		    padding: 1em 0.5em!important;
+		    border-radius: 0em!important;
+		    font-size:15px;
+		    padding-bottom:5px!important;
+		}
+		.userEmailLabel{
+			margin-left:5px!important;
+		}
+		.contentField{
+			float:none!important;
+		}
+		
+		.ui.form input[type="text"]:focus,
+		.ui.form input[type="email"]:focus,
+		.ui.form input[type="date"]:focus,
+		.ui.form input[type="password"]:focus,
+		.ui.form input[type="number"]:focus,
+		.ui.form input[type="tel"]:focus,
+		.ui.form textarea:focus {
+		  color: rgba(0, 0, 0, 0.85);
+		  border-color: rgba(0, 0, 0, 0.2);
+		  border-bottom-left-radius: 0;
+		  border-top-left-radius: 0;
+		  -webkit-appearance: none;
+		  -webkit-box-shadow: 0em 0em 0em 0em rgba(0, 0, 0, 0) inset;
+		  box-shadow: 0em 0em 0em 0em rgba(0, 0, 0, 0) inset;
+		}
+		#publicComment{
+			font-size:1.2em!important;
+			background-image: none!important;
+			background-color: #1BA7D5;
+		}
+		#publicComment:hover{
+			background-color: #008CBA;
+		}
+		#publicComment:active {
+			background-color: #006D9B;
+		}
+		#post-header h3{
+			line-height: 1.5;
+			margin-top:2px!important;
+		}
+		textarea + label,.areadefault{
+				top:20px;
+			}
+		@media screen and (-webkit-min-device-pixel-ratio:0){ 
+			input + label, .inputdefault {
+				top:25%;
+			} 
+			textarea + label,.areadefault{
+				top:10px;
+			}
+			.foucs {  
+			  color: #52A5FB!important;  
+			  font-size: 0.75em!important;  
+			  top: 1%!important;  
+			  transform: none;  
+			}  
+		}  /*chrome and safari*/
+		
+		</style>   
+		<script src="js/jquery-1.7.2.js" type="text/javascript"></script> 
+		<script src="plugjs/bootstrap-ui/js/bootstrap.js" type="text/javascript"></script> 
+		<script src="plugjs/semantic-ui/packaged/javascript/semantic.js"></script>
+		<script type="text/javascript" src="plugjs/scrollup-master/src/jquery.scrollUp.js"></script>
+		
+		<!-- 代码高亮格式化 -->
+		<script type="text/javascript" src="plugjs/syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
+		<script type="text/javascript" src="plugjs/syntaxhighlighter_3.0.83/scripts/shBrushJScript.js"></script>
+		<link type="text/css" rel="stylesheet" href="plugjs/syntaxhighlighter_3.0.83/styles/shCoreDefault.css"/>
+		
+		
+		<script type="text/javascript">
+			var articleId = 0;  // 获取文章的id
+			var fId = 0;  // 默认为对文章的评论
+			$(function(){
+				/* 顶置组件的初始化 */
+				$.scrollUp({
+			        scrollName: 'scrollUp', // Element ID
+			        scrollDistance: 300, // Distance from top/bottom before showing element (px)
+			        scrollFrom: 'top', // 'top' or 'bottom'
+			        scrollSpeed: 300, // Speed back to top (ms)
+			        easingType: 'linear', // Scroll to top easing (see http://easings.net/)
+			        animation: 'fade', // Fade, slide, none
+			        animationInSpeed: 200, // Animation in speed (ms)
+			        animationOutSpeed: 200, // Animation out speed (ms)
+			        scrollText: 'Scroll to top', // Text for element, can contain HTML
+			        scrollTitle: false, // Set a custom <a> title if required. Defaults to scrollText
+			        scrollImg: true, // Set true to use image
+			        activeOverlay: true, // Set CSS color to display scrollUp active point, e.g '#00FFFF'
+			        zIndex: 2147483647 // Z-Index for the overlay
+				});
+				
+				// 获取文章ID
+				articleId = GetRequest();  
+				// 查询一篇文章的内容
+				queryOneArticleData(articleId.id);
+				
+				// 发表评论的绑定事件
+				$("#publicComment").bind("click",function(e){
+					// 绑定监听事件
+					verifCommentInfo($("#userName").val(),$("#userEmail").val(), $("#commentContent").val());
+				});
+				addEvent();
+			});
+			
+			// 绑定事件
+			function addEvent(){
+				// 绑定回复框效果
+				addComEvent();
+				
+				// 添加搜索框点击事件
+				// 判断现在是否在移动设备上或屏幕小的情况下点击
+				if($(".pageTitle").css("width")!="320px"){  // 不是
+					$("#s").bind("focus",function(){
+						$(".search-liaosheji").animate({"top": "-14px","height":"24px"}, "slow");
+					});
+					$("#s").bind("blur",function(){
+						$(".search-liaosheji").animate({"top": "10px","height":"0px"}, "slow");
+					});
+				}else{  // 是
+					$("#s").bind("focus",function(){
+						$(".search-liaosheji").animate({"top": "-31px","height":"24px"}, "slow");
+					});
+					$("#s").bind("blur",function(){
+						$(".search-liaosheji").animate({"top": "-8px","height":"0px"}, "slow");
+					});
+				}
+				
+				$("#searchsubmit").bind("click",function(){
+					var keyword = $("#s").val();
+					window.open("search.html?word="+encodeURI(encodeURI(keyword)));  
+				});
+				
+				// 监听浏览器变化
+				$(window).resize(function(){
+					if($(".pageTitle").css("width")!="320px"){  // 不是
+						// 解除事件
+						$('#s').unbind('focus').unbind('blur');
+						// 需要修改图片当前top值
+						$(".search-liaosheji").css({"top": "10px","height":"0px"});
+						$('#s').blur();  // 移除焦点
+						$("#s").bind("focus",function(){
+							$(".search-liaosheji").animate({"top": "-14px","height":"24px"}, "slow");
+						});
+						$("#s").bind("blur",function(){
+							$(".search-liaosheji").animate({"top": "10px","height":"0px"}, "slow");
+						});
+					}else{
+						$('#s').unbind('focus').unbind('blur');
+						$(".search-liaosheji").css({"top":"-8px","height":"0px"});
+						$('#s').blur();  // 移除焦点
+						$("#s").bind("focus",function(){
+							$(".search-liaosheji").animate({"top": "-31px","height":"24px"}, "slow");
+						});
+						$("#s").bind("blur",function(){
+							$(".search-liaosheji").animate({"top": "-8px","height":"0px"}, "slow");
+						});
+					}
+				});
+
+				// 添加搜索回车事件
+				document.onkeydown=function(event){
+		            var e = event || window.event || arguments.callee.caller.arguments[0];
+		            if(e && e.keyCode==13){ // enter 键
+		            	// 搜索内容
+		            	$("#searchsubmit").click();
+		            }
+		        }; 
+			}
+			
+			// 绑定回复框效果
+			function addComEvent(){
+				// 先解除绑定
+				$("textarea,input").unbind("focus");
+				$("textarea,input").unbind("blur");
+				// 绑定回复框效果
+				$("textarea,input").bind("focus",function(){
+					// 移除 失去焦点class样式，添加获取焦点样式
+					$(this).next("label").removeClass("blur-foucs").addClass("foucs"); 
+				}).bind("blur",function(){
+					// 如果文本框没有值
+					if($(this).val()==''){ 
+						// 移除获取焦点样式添加原生样式
+						if($(this).attr("id")=="commentContent"){
+							$(this).next("label").removeClass("foucs").addClass("areadefault"); 
+						}else{
+							$(this).next("label").removeClass("foucs").addClass("inputdefault"); 
+						}
+					}else{  // 有值 添加失去焦点class样式
+						$(this).next("label").addClass("blur-foucs");
+					}
+				});
+			}
+			
+			//js获取url参数
+			function GetRequest() {
+				var url = location.search; //获取url中"?"符后的字串
+				var theRequest = new Object();
+				if (url.indexOf("?") != -1) {
+					var str = url.substr(1);
+					strs = str.split("&");
+					for(var i = 0; i < strs.length; i ++) {
+						theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+					}
+				}
+				return theRequest;
+			}
+			
+			function queryOneArticleData(id){
+				$.ajax({
+					type : "post",
+					url: "ArticleAction?opeType=queryOne&noteId="+id,
+				    dataType:"json",
+				    success: function(data) {
+						queryRightInfo();  // 查询右侧信息
+						$(document).attr("title", "起步 | "+data.noteData[0].Article_Title);
+						$("#articleTitle").attr("title",data.noteData[0].Article_Title);
+						$("#articleTitle").html(data.noteData[0].Article_Title);
+				    	$("#articleDate").html(data.noteData[0].Article_Date);
+				    	$("#articleContent").html(data.noteData[0].Article_Record);
+				    	var tempArr = data.noteData[0].Aarticle_Label.split(",");
+						var labelItem = '';
+						for(var i=0; i<tempArr.length; i++){
+							if(i==0){
+								labelItem += '<a href="javascript:void(0)" onclick="queryLikeLableLength(\''+tempArr[i]+'\')">'+tempArr[i]+'</a>';
+							}else{
+								labelItem += '&nbsp;,&nbsp;<a href="javascript:void(0)" onclick="queryLikeLableLength(\''+tempArr[i]+'\')">'+tempArr[i]+'</a>';
+							}
+						}
+				    	$("#articleTags").html("Tags : "+labelItem);
+						
+				    	// 添加完数据之后代码高亮
+				    	SyntaxHighlighter.highlight();
+				    	// 设置图片为响应式缩放或扩大
+				    	$("#articleContent img").addClass("img-responsive").attr("xsalt","Responsive image");
+				    	// 添加评论数据
+				    	addCommentData(data.commentData);
+				    }
+				});
+			}
+			
+			// 打开一篇文章
+			function openArticle(id){
+				window.open("show.html?id="+id);  
+			}
+			
+			// 添加评论数据
+			function addCommentData(data){
+				$.each(data,function(k, v){
+					// 判断是否此评论的父节点是文章
+					if(v.F_Code==0){  // 是
+						// 组织数据  添加到文章
+						var item = '';
+						item += '<div id="comment'+v.Comment_ID+'" class="comment">';
+						item += '	<a class="avatar">';
+						item += '		<img src="image/foot.png">';
+						item += '	</a>';
+						item += '	<div class="content">';
+						item += '		<a class="author"> '+v.Comment_Person_Name+' </a>';
+						item += '		<div class="metadata">';
+						item += '			<span class="date"> '+v.Comment_DataTime+' </span>';
+						item += '		</div>';
+						item += '		<div class="text"> '+v.Comment_Record+' </div>';
+						item += '		<div class="actions">';
+						item += '			<a class="reply" href="javascript:void(0)" onclick="replyClickEvent('+v.Comment_ID+')">回复</a>';
+						item += '		</div>';
+						item += '	</div>';
+						item += '</div>';
+						
+						$("#commentItems").append(item);
+					}else{  // 否
+						// 判断父级评论下是不是已经有了子级评论
+						if($("#comment"+v.F_Code).find(".comments").length==0){  // 没有
+							var item = '';
+							item += '<div id="comments'+v.F_Code+'" class="comments">';
+							item += '	<div id="comment'+v.Comment_ID+'" class="comment">';
+							item += '		<a class="avatar">';
+							item += '			<img src="image/foot.png">';
+							item += '		</a>';
+							item += '		<div class="content">';
+							item += '			<a class="author"> '+v.Comment_Person_Name+' </a>';
+							item += '			<div class="metadata">';
+							item += '				<span class="date"> '+v.Comment_DataTime+' </span>';
+							item += '			</div>';
+							item += '			<div class="text"> '+v.Comment_Record+' </div>';
+							item += '			<div class="actions">';
+							item += '				<a class="reply" href="javascript:void(0)" onclick="replyClickEvent('+v.Comment_ID+')">回复</a>';
+							item += '			</div>';
+							item += '		</div>';
+							item += '	</div>';
+							item += '</div>';
+							
+							$("#comment"+v.F_Code).append(item);
+						}else{  // 有
+							var item = '';
+							item += '<div id="comment'+v.Comment_ID+'" class="comment">';
+							item += '	<a class="avatar">';
+							item += '		<img src="image/foot.png">';
+							item += '	</a>';
+							item += '	<div class="content">';
+							item += '		<a class="author"> '+v.Comment_Person_Name+' </a>';
+							item += '		<div class="metadata">';
+							item += '			<span class="date"> '+v.Comment_DataTime+' </span>';
+							item += '		</div>';
+							item += '		<div class="text"> '+v.Comment_Record+' </div>';
+							item += '		<div class="actions">';
+							item += '			<a class="reply" href="javascript:void(0)" onclick="replyClickEvent('+v.Comment_ID+')">回复</a>';
+							item += '		</div>';
+							item += '	</div>';
+							item += '</div>';
+							
+							$("#comments"+v.F_Code).append(item);
+						}
+					}
+				});
+			}
+			
+			// 点击回复添加回复框
+			function replyClickEvent(id){
+				fId = id;  // 对谁评论
+				// 移除所有回复框
+				if($("#articleComment #replyBox")[0]){
+					// 删除评论回复框
+					$("#replyBox").remove();
+				}
+				
+				// 删除文章回复框
+				if($("#replyBoxAri")[0]){
+					$("#replyBoxAri").remove();
+				}
+				
+				// 组织复选框html代码
+				var boxHtml = '';
+				boxHtml += '<form id="replyBox" class="ui reply form">';
+				boxHtml += '	<div class="ui  form ">';
+				boxHtml += '		<div class="field" >';
+				boxHtml += '			<input type="text" id="userName" />';
+				boxHtml += '			<label class="userNameLabel" for="userName">Your Name</label>';
+				boxHtml += '		</div>';
+				boxHtml += '		<div class="field" >';
+				boxHtml += '			<input type="text" id="userEmail" />';
+				boxHtml += '			<label class="userEmailLabel" for="userName">E-mail</label>';
+				boxHtml += '		</div>';
+				boxHtml += '		<div class="contentField field" >';
+				boxHtml += '			<textarea id="commentContent"></textarea>';
+				boxHtml += '			<label class="commentContentLabel" for="commentContent">Content</label>';
+				boxHtml += '		</div>';
+				boxHtml += '		<div id="publicComment" class="ui button teal submit labeled icon">';
+				boxHtml += '			<i class="icon edit"></i> 提交评论';
+				boxHtml += '		</div>';
+				boxHtml += '	</div>';
+				boxHtml += '</form>';
+				
+				$("#comment"+id).find(">.content").after(boxHtml);
+				
+				// 绑定回复框效果
+				addComEvent();
+				
+				$("#publicComment").bind("click",function(e){
+					// 绑定监听事件
+					verifCommentInfo($("#userName").val(),$("#userEmail").val(), $("#commentContent").val());
+				});
+				
+			}
+			
+			// 验证提交信息
+			function verifCommentInfo(){
+				// 验证方法
+				publicComment($("#userName").val(),$("#userEmail").val(), $("#commentContent").val())
+			}
+			
+			// 提交评论
+			function publicComment(name,email,content){
+				var userName = encodeURI(encodeURI(name));
+				var userEmail = encodeURI(encodeURI(email));
+				var commentContent = encodeURI(encodeURI(content));
+				
+				// 添加等待效果
+				var loader = '';
+				loader += '<div id="loading" class="ui active inverted dimmer">';
+				loader += '    <div class="ui text loader">Loading</div>';
+				loader += '</div>';
+			    $("form").append(loader);
+				
+		    	console.info(name);
+				$.ajax({
+					type : "post",
+					url: "PageAction?opeType=addComment&userName="+userName+"&userEmail="+userEmail+"&commentContent="+commentContent+"&articleId="+articleId.id+"&fCode="+fId,
+				    dataType:"json",
+				    success: function(data) {
+				    	$("#loading").remove();
+				    	console.info(data);
+				    	// 成功 添加留言  并把留言框添加到底部
+				    	if(data.code=="1"){
+				    		if(data.topData[0].F_Code==0){  // 是
+								// 组织数据  添加到文章
+								var item = '';
+								item += '<div id="comment'+data.topData[0].Comment_ID+'" class="comment">';
+								item += '	<a class="avatar">';
+								item += '		<img src="image/foot.png">';
+								item += '	</a>';
+								item += '	<div class="content">';
+								item += '		<a class="author"> '+name+' </a>';
+								item += '		<div class="metadata">';
+								item += '			<span class="date"> '+data.topData[0].Comment_DataTime+' </span>';
+								item += '		</div>';
+								item += '		<div class="text"> '+content+' </div>';
+								item += '		<div class="actions">';
+								item += '			<a class="reply" href="javascript:void(0)" onclick="replyClickEvent('+data.topData[0].Comment_ID+')">回复</a>';
+								item += '		</div>';
+								item += '	</div>';
+								item += '</div>';
+								
+								$("#commentItems").append(item);
+							}else{  // 否
+					    		// 判断父级评论下是不是已经有了子级评论
+								if($("#comment"+fId).find(".comments").length==0){  // 没有
+									var item = '';
+									item += '<div id="comments'+fId+'" class="comments">';
+									item += '	<div id="comment'+data.topData[0].Comment_ID+'" class="comment">';
+									item += '		<a class="avatar">';
+									item += '			<img src="image/foot.png">';
+									item += '		</a>';
+									item += '		<div class="content">';
+									item += '			<a class="author"> '+name+' </a>';
+									item += '			<div class="metadata">';
+									item += '				<span class="date"> '+data.topData[0].Comment_DataTime+' </span>';
+									item += '			</div>';
+									item += '			<div class="text"> '+content+' </div>';
+									item += '			<div class="actions">';
+									item += '				<a class="reply" href="javascript:void(0)" onclick="replyClickEvent('+data.topData[0].Comment_ID+')">回复</a>';
+									item += '			</div>';
+									item += '		</div>';
+									item += '	</div>';
+									item += '</div>';
+									
+									$("#comment"+fId).append(item);
+								}else{  // 有
+									var item = '';
+									item += '<div id="comment'+data.topData[0].Comment_ID+'" class="comment">';
+									item += '	<a class="avatar">';
+									item += '		<img src="image/foot.png">';
+									item += '	</a>';
+									item += '	<div class="content">';
+									item += '		<a class="author"> '+name+' </a>';
+									item += '		<div class="metadata">';
+									item += '			<span class="date"> '+data.topData[0].Comment_DataTime+' </span>';
+									item += '		</div>';
+									item += '		<div class="text"> '+content+' </div>';
+									item += '		<div class="actions">';
+									item += '			<a class="reply" href="javascript:void(0)" onclick="replyClickEvent('+data.topData[0].Comment_ID+')">回复</a>';
+									item += '		</div>';
+									item += '	</div>';
+									item += '</div>';
+									
+									$("#comments"+fId).append(item);
+								}
+							}
+				    		fId = 0;
+				    		// 删除回复框
+				    		$("#replyBox").remove();
+				    		// 删除文章回复框
+							if($("#replyBoxAri")[0]){
+								$("#replyBoxAri").remove();
+							}
+				    		// 添加另一个回复框
+				    		addArtFormHtml();
+				    	}
+				    }
+				});
+			}
+			
+			// 添加文章回复框
+			function addArtFormHtml(){
+				
+				// 组织复选框html代码
+				var boxHtml = '';
+				boxHtml += '<form id="replyBoxAri" class="ui reply form">';
+				boxHtml += '	<div class="ui large form ">';
+				boxHtml += '		<div class="two fields">';
+				boxHtml += '			<div class="field" >';
+				boxHtml += '				<input type="text" id="userName" />';
+				boxHtml += '				<label class="userNameLabel" for="userName">Your Name</label>';
+				boxHtml += '			</div>';
+				boxHtml += '			<div class="field" >';
+				boxHtml += '				<input type="text" id="userEmail" />';
+				boxHtml += '				<label class="userEmailLabel" for="userName">E-mail</label>';
+				boxHtml += '			</div>';
+				boxHtml += '		</div>';
+				boxHtml += '		<div class="contentField field" >';
+				boxHtml += '			<textarea id="commentContent"></textarea>';
+				boxHtml += '			<label class="commentContentLabel" for="commentContent">Content</label>';
+				boxHtml += '		</div>';
+				boxHtml += '		<div id="publicComment" class="ui button teal submit labeled icon">';
+				boxHtml += '			<i class="icon edit"></i> 提交评论';
+				boxHtml += '		</div>';
+				boxHtml += '	</div>';
+				boxHtml += '</form>';
+				
+				$("#commentFrom").append(boxHtml);
+				
+				// 绑定回复框效果
+				addComEvent();
+				
+				$("#publicComment").bind("click",function(e){
+					// 绑定监听事件
+					verifCommentInfo($("#userName").val(),$("#userEmail").val(), $("#commentContent").val());
+				});
+				
+				
+			}
+			
+			// 查询和标签匹配的个数
+			function queryLikeLableLength(name){
+				var lableName = encodeURI(encodeURI(name));
+				window.open("topic.html?topic="+lableName);  
+			}
+			
+			// 请求右侧数据信息
+			function queryRightInfo(){
+				queryNoteArtRecomData();
+			}
+			
+			// 请求推荐代码div数据
+			function queryNoteArtRecomData(){
+				$.ajax({
+					type : "POST",
+					url: "PageAction?opeType=queryNoteArtRecomData",
+					dataType:"json",
+					success: function(data) {
+						console.info(data);
+						// 添加笔记数据
+						$.each(data.noteData,function(k,v){
+							var item = '';
+						  	item += '<p>';
+						  	item += '	<span>●</span>';
+							item += '	<a href="javascript:void(0)" onclick="openArticle('+v.Article_ID+')">'+v.Article_Title+'</a>';
+							item += '</p>';
+							
+							$(".codeRecom").append(item);
+						});
+						
+						// 请求推荐文章数据
+						queryArticleRecomData();
+					}
+				});
+			}
+			
+			// 请求推荐文章数据
+			function queryArticleRecomData(){
+				$.ajax({
+					type : "POST",
+					url: "PageAction?opeType=queryRecomData&pageId=1&pageCount=10&contentLength=0&textLength=0",
+					dataType:"json",
+					success: function(data) {
+						console.info(data);
+						
+						$.each(data.articleData,function(k,v){
+							var item = '';
+						  	item += '<p>';
+						  	item += '	<span>●</span>';
+							item += '	<a href="javascript:void(0)" onclick="openArticle('+v.Article_ID+')">'+v.Article_Title+'</a>';
+							item += '</p>';
+							
+							$("#articleRecom").append(item);
+						});
+						
+						// 请求推荐图书数据
+						queryBookRecomData();
+					}
+				});
+			}
+			
+			
+			// 请求推荐图书数据
+			function queryBookRecomData(){
+				$.ajax({
+					type : "POST",
+					url: "BookAction?opeType=queryPage&pageId=1&pageCount=3&typeId=0",
+					dataType:"json",
+					success: function(data) {
+						$.each(data.bookData,function(k,v){
+							var item = '';
+							item += '<div class="item">';
+							item += '	<img src="'+v.Book_Cover+'" class="ui avatar image" />';
+							item += '	<div class="content">';
+							item += '		<div class="header">'+v.Book_Name+'</div>';
+							//item += '		'+v.Book_Abstract;
+							item += '	</div>';
+							item += '</div>';
+							
+				        	$("#bookRecom").append(item);
+						});
+						
+						// 请求标签数据
+						queryLableData();
+					}
+				});
+			}
+			
+			// 请求标签数据
+			function queryLableData(){
+				$.ajax({
+					type : "POST",
+					url: "ClassifyAction?opeType=queryPage&pageId=1&pageCount=1000&fCode=4",
+					dataType:"json",
+					success: function(data) {
+						console.info(data);
+						// 添加数据
+						$.each(data.classifyData,function(k,v){
+							var item = '<a id="lable'+v.Sort_ID+'" class="tagadelic level1" title="" rel="tag" href="javascript:void(0)" onclick="queryLikeLableLength(\''+v.Sort_Name+'\')">'+v.Sort_Name+'</a>';
+							$("#lableItems").append(item);
+						});
+					}
+				});
+			}
+			
+			
+			
+			
+		</script>
+	</head>  
+	<body>  
+	
+		<div class="container bs-docs-container">
+			<!-- 版头 -->
+			<div class="row pageTitle">
+				<span class="logo">
+					<a rel="home" title="Just do IT" href="index.html">
+						<b class="bclass">Just do IT</b>
+					</a>
+					<i>专注于web前端开发，专注于用户体验</i> 
+				</span>
+				<span class="newsearch">
+					<b class="search-liaosheji" style=""></b>
+					<input id="s" class="input" type="text" style="color:#999" placeholder="搜索小贱鸡？"  />
+					<button id="searchsubmit" class="btn">搜索</button>
+				</span>
+			</div>
+			
+			<!-- 菜单栏 -->
+			<div class="row" style="margin-top:10px;">
+				<header class="navbar navbar-inverse bs-docs-nav" role="banner">
+					<div class="container">
+						<div class="navbar-header">
+							<span class="navTips">网站导航</span>
+							<button class="navbar-toggle" data-target=".bs-navbar-collapse" data-toggle="collapse" type="button">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+						<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+							<ul class="nav navbar-nav">
+								<li><a href="index.html">首页</a></li>
+								<li><a href="product.html">产品</a></li>
+					      		<li><a href="design.html">设计</a></li>
+					      		<li><a href="front.html">前端</a></li>
+					      		<li><a href="code.html">代码笔记</a></li>
+					      		<li><a href="joy.html">读书乐趣</a></li>
+					      		<li><a href="about.html">关于我</a></li>
+							</ul>
+						</nav>
+					</div>
+				</header>
+			</div>
+		
+			<!-- 内容 -->
+			<div class="row">
+				<div id="articleItems" class="col-md-8" role="main">
+					<!-- 内容表头部分 -->
+					<img style="display:none;" src="image/running_banner.png" class="img-responsive contentTitle" xsalt="Responsive image"></img>
+					<!-- 文章标题 -->
+						<div id="post-header" style="margin-bottom:40px;">
+							<h3 style="color:#333;" id="articleTitle"></h3>
+							<div style="color:#434A54;" id="post-msg">
+								<span id="articleDate"></span>
+							</div>
+							<div class="clear"></div>
+						</div>
+						
+						<!-- 文章内容 -->
+						<div id="post-content">
+							<div id="articleContent">
+							
+							</div>
+							<div id="articleTags"></div>
+						</div>
+						
+						<div style="margin-top:20px;margin-bottom:20px;" class="ui fitted divider"></div>
+						
+						<!-- 文章用户评论 -->
+						<div id="articleComment">
+							<div id="commentItems" style="margin-bottom:20px;" class="ui threaded comments">
+								<div class="text" style="font-size:2rem;"> 大家的脚印 </div>
+							</div>
+							<div id="commentFrom">
+							    
+								<form id="replyBoxAri" class="ui reply form">
+									
+									<div class="ui large form " >
+										<div class="two fields">
+											<div class="field">
+										      	<input type="text" id="userName" />
+												<label class="userNameLabel" for="userName">Your Name</label>
+										    </div>
+										    <div class="field">
+										    	<input type="text" id="userEmail" />
+												<label class="userEmailLabel" for="userName">E-mail</label>
+										    </div>
+										</div>
+										<div class="contentField field" >
+											<textarea id="commentContent"></textarea>
+											<label class="commentContentLabel" for="commentContent">Content</label>
+										</div>
+										<div id="publicComment" class="ui button teal submit labeled icon">
+											<i class="icon edit"></i> 提交评论
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					
+					
+					
+					
+					<!-- 左侧内容部分 -->
+					<div class="pagination" id="pagination"></div>
+				</div>
+				<div class="col-md-4 newLeftDiv">
+					<!-- box div -->
+					<div class="boxDiv">
+						<ul class="topic">
+							<li><a onclick="queryLikeLableLength('视觉设计')" href="javascript:void(0)">视觉设计</a></li>
+							<li><a onclick="queryLikeLableLength('扁平化')" href="javascript:void(0)">扁平化</a></li>
+							<li><a onclick="queryLikeLableLength('IOS风格')" href="javascript:void(0)">IOS风格</a></li>
+							<li><a onclick="queryLikeLableLength('Nodejs')" href="javascript:void(0)">Node.js</a></li>
+							<li><a onclick="queryLikeLableLength('设计趋势')" href="javascript:void(0)">设计趋势</a></li>
+							<li><a onclick="queryLikeLableLength('javascript')" href="javascript:void(0)">javascript</a></li>
+							<li><a onclick="queryLikeLableLength('HTML5')" href="javascript:void(0)">HTML5</a></li>
+							<li><a onclick="queryLikeLableLength('CSS3')" href="javascript:void(0)">CSS3</a></li>
+							<li><a onclick="queryLikeLableLength('移动端')" href="javascript:void(0)">移动端</a></li>
+						</ul>
+					</div>
+					
+					<!-- 图片 div -->
+					<div class="boxDiv">
+						<img src="image/20140211112127438-385x220.png" class="img-responsive " xsalt="Responsive image"></img>
+					</div>
+					
+					<!-- 热门文章 -->
+					<div class="ui segment ">
+					  	<h3 class="ui left floated header">热门文章</h3>
+					  	<h3 class="ui right floated header"><a target="_blank" style="color:#333;" href="more.html">更多</a></h3>
+					  	<div class="ui clearing divider"></div>
+					  	<div id="articleRecom" class="ui animated list">
+					  	
+						</div>
+					</div>
+					
+					<!-- 经典笔记 -->
+					<div class="ui segment">
+					  	<h3 class="ui left floated header">经典笔记</h3>
+					  	<h3 class="ui right floated header"><a target="_blank" style="color:#333;" href="notemore.html">更多</a></h3>
+					  	<div class="ui clearing divider"></div>
+					  	<div class="codeRecom ui animated list">
+					  	
+						</div>
+					</div>
+					
+					<!-- 精品书籍 -->
+					<div class="ui segment">
+					  	<h3 class="ui left floated header">精品书籍</h3>
+					  	<h3 class="ui right floated header"><a target="_blank" style="color:#333;" href="joy.html">更多</a></h3>
+					  	<div class="ui clearing divider"></div>
+					  	<div class="ui animated list">
+					  	</div>
+					  	<div id="bookRecom" class="ui selection list">
+						  
+						</div>
+					</div>
+					
+					
+					
+					<!-- 对外链接 -->
+					<div class="ui segment">
+					    <h3 class="ui left floated header">对外链接</h3>
+					    <div class="ui clearing divider"></div>
+					    <div id="foreign" class="ui animated list topic_list">
+					    	<ul>
+								<!-- glyphicon-thumbs-up -->
+								<li><span class="glyphicon glyphicon-hand-right"></span><a target="_blank" href="http://www.alloyteam.com">腾讯 Web-前端端 AlloyTeam 团队</a></li>
+								<li><span class="glyphicon glyphicon-hand-right"></span><a target="_blank" href="http://cdc.tencent.com">腾讯 CDC-体验设计中心</a></li>
+								<li><span class="glyphicon glyphicon-hand-right"></span><a target="_blank" href="http://isux.tencent.com">腾讯 ISUX-社交用户体验中心</a></li>
+								<li><span class="glyphicon glyphicon-hand-right"></span><a target="_blank" href="http://mxd.tencent.com">腾讯 MXD-移动互联网设计中心</a></li>
+								<li><span class="glyphicon glyphicon-hand-right"></span><a target="_blank" href="http://beforweb.com">Be For Web 为网而生</a></li>
+								<li><span class="glyphicon glyphicon-hand-right"></span><a target="_blank" href="http://www.w3cfuns.com">W3Cfuns 前端开发互动平台</a></li>
+								<li><span class="glyphicon glyphicon-hand-right"></span><a target="_blank" href="http://www.uisdc.com">优设 优秀网页设计联盟</a></li>
+								<li><span class="glyphicon glyphicon-hand-right"></span><a target="_blank" href="http://5m3d.com">5迷3道 HTML5和CSS3的真材实料</a></li>
+							</ul>
+					    </div>
+					</div>
+					
+					<!-- 话题碎片 -->
+					<div class="ui segment">
+					    <h3 class="ui left floated header">话题碎片</h3>
+					    <div class="ui clearing divider"></div>
+					    <div id="lableItems" class="ui animated list topic_list">
+					    
+					    </div>
+					</div>
+				</div>
+			</div>
+		
+		</div>
+		<footer class="bs-footer" role="contentinfo">
+			<br/><br/><br/><br/><br/><br/><br/>
+		</footer>
+		
+		
+		
+		<script type="text/javascript">  
+			// 初始化菜单折叠组件
+			$('#myCollapsible').collapse({
+			  toggle: false
+			});
+		</script>  
+		
+	</body>  
+</html>  
+
+
+
+
+
+
+
+
+
+
+
+
+
+

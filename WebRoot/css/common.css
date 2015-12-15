@@ -1,0 +1,118 @@
+body{
+	background-color: #fdfdfd!important;
+}
+/* 选中字体的颜色 */
+::-moz-selection { background: #CCE2FF; color: #fff; text-shadow: none; }
+::selection { background: #CCE2FF; color: #fff; text-shadow: none; }
+
+.col-md-8,.col-md-4{
+	padding-top:15px;
+	padding-bottom:15px; 
+}
+.col-md-8 .segment{
+	margin-bottom: 2.7em;
+}
+#content{
+	height: 65px;
+   	padding-top: 50px;
+}
+#content .container{
+	padding-left:30px;
+	padding-right:30px;
+}
+.article>p{
+	line-height:1.8;
+}
+.article_lable>.label{
+	font-size:1.23rem;
+	min-width: 4em!important;
+} 
+.class_recom .ui.label{
+	font-size:1.30rem;
+	left:-3rem;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0){ .class_recom .ui.label {left:-2.5rem;} }
+
+.article_search{
+    padding-top: 0.5em!important;
+	padding-bottom: 0.5em!important;
+    padding-left: 0.5em!important;
+    padding-right: 0.5em!important;
+    font-size:1.5rem!important;
+}
+.article_search_div .button{
+	font-size:1.2rem;
+}
+.article_search_div .icon{
+	font-size:1.5rem;
+}
+.topic_list a {
+	font-size: 0.9em;
+    margin-right: 8px;
+    /* white-space: nowrap; */
+    color: #8C8C8C;
+}
+.topic_list a:hover {
+    color: #0A0A0A;
+    text-decoration: none;
+}
+.recom_article .header{
+	font-weight: inherit!important;
+}
+
+/* 文章div内的样式 */
+.article_title{
+	font-size:24px;
+}
+.article_title:hover{
+	/* 
+	cursor:pointer;
+	color:#666666;
+	 */
+} 
+.article_date{
+	margin-bottom: 15px;
+	padding-left:5px;
+}
+.article_date>span{
+	color:#9F9F9F;
+	margin-bottom: 20px;
+}
+.article_content{
+	padding-left:5px;
+	padding-bottom:10px;
+	letter-spacing: 0.3px;
+}
+
+/* 搜索框div内的样式 */
+.article_search_div{
+	height:65px;
+	padding-top:15px;
+}
+
+/* 分页条div内的样式 */
+.pagination{
+	float:right;
+	margin:4px 0 0 0;
+}
+.about:hover{
+	background-color: #48C9B0!important;
+}
+.topRecom, .codeRecom{
+	padding-top:10px;
+}
+.search:hover{
+	cursor:pointer!important;
+}
+#bookRecom .content{
+	display: inline;
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,537 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">  
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">   
+	<head>   
+		<title>起步 | 专注于web前端开发</title>   
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />   
+		<meta http-equiv="Content-Language" content="zh-CN" />   
+		<meta name="keywords" content="前端, 产品, 设计, javascript, jquery, css, html, czlqibu, 起步, java, j2ee, 扁平化, 代码, 笔记, web前端, web起步, 从这里起步" />
+		<meta name="description" content="起步是一个优秀的web前端网站" />
+		
+		<!-- 响应式声明开始 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<!-- 响应式声明结束 -->
+		
+		<link rel= "shortcut icon" href= "image/foot.png" />
+		<link rel="stylesheet" type="text/css" href="plugjs/bootstrap-ui/css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="plugjs/semantic-ui/packaged/css/semantic.css" />
+		<link rel="stylesheet" type="text/css" href="plugjs/scrollup-master/css/themes/image.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="css/new_common.css" />
+		<style type="text/css" media="print, screen">  
+		</style>   
+		<script src="js/jquery-1.7.2.js" type="text/javascript"></script> 
+		<script src="plugjs/bootstrap-ui/js/bootstrap.js" type="text/javascript"></script> 
+		<script src="plugjs/semantic-ui/packaged/javascript/semantic.js"></script>
+		<script type="text/javascript" src="plugjs/jquery.pagination-master/js/jquery.pagination.js"></script>
+		<script type="text/javascript" src="plugjs/scrollup-master/src/jquery.scrollUp.js"></script>
+		
+		<script type="text/javascript" src="plugjs/ueditor1.6.1/ueditor.all.js"></script>
+		<script type="text/javascript" src="plugjs/ueditor1.6.1/ueditor.parse.js"></script>
+		<script type="text/javascript" src="plugjs/ueditor1.6.1/third-party/SyntaxHighlighter/shCore.js"></script> 
+		<link rel="stylesheet" type="text/css" href="plugjs/ueditor1.6.1/third-party/SyntaxHighlighter/shCoreDefault.css" />
+		
+		<script type="text/javascript">
+			$(function(){
+				
+				$.scrollUp({
+			        scrollName: 'scrollUp', // Element ID
+			        scrollDistance: 300, // Distance from top/bottom before showing element (px)
+			        scrollFrom: 'top', // 'top' or 'bottom'
+			        scrollSpeed: 300, // Speed back to top (ms)
+			        easingType: 'linear', // Scroll to top easing (see http://easings.net/)
+			        animation: 'fade', // Fade, slide, none
+			        animationInSpeed: 200, // Animation in speed (ms)
+			        animationOutSpeed: 200, // Animation out speed (ms)
+			        scrollText: 'Scroll to top', // Text for element, can contain HTML
+			        scrollTitle: false, // Set a custom <a> title if required. Defaults to scrollText
+			        scrollImg: true, // Set true to use image
+			        activeOverlay: true, // Set CSS color to display scrollUp active point, e.g '#00FFFF'
+			        zIndex: 2147483647 // Z-Index for the overlay
+				});
+				
+				queryAllLength();  // 查询文章（包含笔记）总个数
+				addSearchEvent();
+			});
+			
+			// 绑定搜索按钮
+			function addSearchEvent(){
+				// 添加搜索框点击事件
+				// 判断现在是否在移动设备上或屏幕小的情况下点击
+				if($(".pageTitle").css("width")!="320px"){  // 不是
+					$("#s").bind("focus",function(){
+						$(".search-liaosheji").animate({"top": "-14px","height":"24px"}, "slow");
+					});
+					$("#s").bind("blur",function(){
+						$(".search-liaosheji").animate({"top": "10px","height":"0px"}, "slow");
+					});
+				}else{  // 是
+					$("#s").bind("focus",function(){
+						$(".search-liaosheji").animate({"top": "-31px","height":"24px"}, "slow");
+					});
+					$("#s").bind("blur",function(){
+						$(".search-liaosheji").animate({"top": "-8px","height":"0px"}, "slow");
+					});
+				}
+				
+				$("#searchsubmit").bind("click",function(){
+					var keyword = $("#s").val();
+					window.open("search.html?word="+encodeURI(encodeURI(keyword)));  
+				});
+				
+				// 监听浏览器变化
+				$(window).resize(function(){
+					if($(".pageTitle").css("width")!="320px"){  // 不是
+						// 解除事件
+						$('#s').unbind('focus').unbind('blur');
+						// 需要修改图片当前top值
+						$(".search-liaosheji").css({"top": "10px","height":"0px"});
+						$('#s').blur();  // 移除焦点
+						$("#s").bind("focus",function(){
+							$(".search-liaosheji").animate({"top": "-14px","height":"24px"}, "slow");
+						});
+						$("#s").bind("blur",function(){
+							$(".search-liaosheji").animate({"top": "10px","height":"0px"}, "slow");
+						});
+					}else{
+						$('#s').unbind('focus').unbind('blur');
+						$(".search-liaosheji").css({"top":"-8px","height":"0px"});
+						$('#s').blur();  // 移除焦点
+						$("#s").bind("focus",function(){
+							$(".search-liaosheji").animate({"top": "-31px","height":"24px"}, "slow");
+						});
+						$("#s").bind("blur",function(){
+							$(".search-liaosheji").animate({"top": "-8px","height":"0px"}, "slow");
+						});
+					}
+				});
+				
+				// 添加搜索回车事件
+				document.onkeydown=function(event){
+		            var e = event || window.event || arguments.callee.caller.arguments[0];
+		            if(e && e.keyCode==13){ // enter 键
+		            	// 搜索内容
+		            	$("#searchsubmit").click();
+		            }
+		        }; 
+			}
+			
+			
+			// 查询文章（包含笔记）总个数
+			function queryAllLength(){
+				$.ajax({
+					type : "POST",
+					url: "PageAction?opeType=queryAllLength&type=0",
+					dataType:"json",
+					success: function(data) {
+					  	//模拟后端语言获取URL get参数的过程
+						var Request = new Object();
+						Request = GetRequest();
+						var page = typeof Request['page'] == 'undefined' ? 0 : Request['page'];    //当前页数
+					    createPage(page,data.length);  // 创建分页组件
+						// 查询每页数据
+						queryAllPageData(parseInt(page)+1,10,320);
+					}
+				});
+			}
+			
+			// 创建分页组件
+			function createPage(page,length){
+				// 初始化分页组件
+				$("#pagination").pagination(length, {  // 一共多少条数据
+					current_page : page,
+					items_per_page : 10,
+					num_display_entries : 3,
+					link_to : 'index.html?page=__id__',
+					callback : function(){},
+					prev_text : '上一页',
+					next_text : '下一页'
+				});
+			}
+			
+			// 查询文章（包含笔记）每页数据
+			function queryAllPageData(pageId, pageCount, showChar){
+				$.ajax({
+					type : "POST",
+					url: "PageAction?opeType=queryAllPageData&typeId=0&pageId="+pageId+"&pageCount="+pageCount+"&contentLength="+showChar+"&textLength="+showChar,
+					dataType:"json",
+					success: function(data) {
+						// 组织页面展示的数据
+						orgItemsData(data.articleData);
+						
+						// 添加完数据之后代码高亮
+				    	//SyntaxHighlighter.highlight(); 
+					}
+				});
+			}
+			
+			function orgItemsData(data){
+				for(var j=data.length;j>0;j--){
+					// 组织标签的html代码
+					var tempArr = data[j-1].Aarticle_Label.split(",");
+					var labelItem = '';
+					for(var i=0; i<tempArr.length; i++){
+						if(i==0){
+							labelItem += '<a style="font-size:13px;" href="javascript:void(0)" onclick="queryLikeLableLength(\''+tempArr[i]+'\')">'+tempArr[i]+'</a>';
+						}else{
+							labelItem += '&nbsp;,&nbsp;<a style="font-size:13px;" href="javascript:void(0)" onclick="queryLikeLableLength(\''+tempArr[i]+'\')">'+tempArr[i]+'</a>';
+						}
+					}
+					
+					// 判断分类的转向
+					var typePage = "";
+					if(data[j-1].Type_ID==5){  // 产品
+						typePage = "product.html";
+					}else if(data[j-1].Type_ID==6){  // 设计
+						typePage = "design.html";
+					}else if(data[j-1].Type_ID==7){  // 前端
+						typePage = "front.html";
+					}
+					// 设置缺省封面
+					if(data[j-1].Cover_Img==""){
+						data[j-1].Cover_Img = "image/Article_cover_default.png";
+					}
+					
+					var item = '';
+					item += '<div id="item'+data[j-1].Article_ID+'" class="ui stacked segment">';
+					item += '	<h2 class="article_title">';
+					item += '		<a style="font-size:24px;" href="javascript:void(0)" onclick="openArticle('+data[j-1].Article_ID+')">'+data[j-1].Article_Title+'</a>&nbsp;&nbsp;';
+					item += '	<h2/>';
+					item += '	<div class="article_date">';
+					item += '		<span rel="sioc:has_creator" datatype="xsd:dateTime" content="2013-11-10T12:30:01+08:00" property="dc:date dc:created">';
+					item += '			发布时间 : '+data[j-1].Article_Date+'';
+					item += '		</span>';
+					item += '		&nbsp;&nbsp;&nbsp;<span style="color:#434A54;">Tags : </span>';
+					item += labelItem;
+					item += '	</div>';
+					item += '	<div class="row">';
+				    item += '		<a style="float:left;width:240px;oveflow:hidden;" href="javascript:void(0)" onclick="openArticle('+data[j-1].Article_ID+')" class="thumbnail">';
+				    item += '			<img data-src="holder.js/100%x175" style="height: 175px; width: 100%; display: block;" src="'+data[j-1].Cover_Img+'">';
+				    item += '		</a>';
+					item += '		<span id="artContent'+data[j-1].Article_ID+'" class="article_content"></span>';
+					item += '	</div>';
+					item += '</div>';
+					
+					$(".contentTitle").after(item);
+				}
+				
+				$.each(data, function(key,val){
+					var con = val.Article_Record.replace(/<\/?[^>]*>/g,''); //去除HTML tag
+					$("#artContent"+val.Article_ID).html(con+"...");
+				});
+				
+				// 请求右侧推荐系列信息
+				queryRightInfo();
+			}
+			
+			
+			// 打开一篇文章
+			function openArticle(id){
+				window.open("show.html?id="+id);  
+			}
+			
+			// 查询和标签匹配的个数
+			function queryLikeLableLength(name){
+				var lableName = encodeURI(encodeURI(name));
+				window.open("topic.html?topic="+lableName);  
+			}
+			
+			
+			//js获取url参数
+			function GetRequest() {
+				var url = location.search; //获取url中"?"符后的字串
+				var theRequest = new Object();
+				if (url.indexOf("?") != -1) {
+					var str = url.substr(1);
+					strs = str.split("&");
+					for(var i = 0; i < strs.length; i ++) {
+						theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+					}
+				}
+				return theRequest;
+			}
+			
+			// 请求右侧数据信息
+			function queryRightInfo(){
+				queryNoteArtRecomData();
+			}
+			
+			// 请求推荐代码div数据
+			function queryNoteArtRecomData(){
+				$.ajax({
+					type : "POST",
+					url: "PageAction?opeType=queryNoteArtRecomData",
+					dataType:"json",
+					success: function(data) {
+						console.info(data);
+						// 添加文章数据
+						/* $.each(data.articleData,function(k,v){
+							var item = '';
+						  	item += '<p>';
+							item += '	<a style="font-size:14px;color:#333;" href="javascript:void(0)" onclick="openArticle('+v.Article_ID+')">'+v.Article_Title+'</a>';
+							item += '</p>';
+							
+							$(".topRecom").append(item);
+						}); */
+						// 添加笔记数据
+						$.each(data.noteData,function(k,v){
+							var item = '';
+						  	item += '<p>';
+						  	item += '	<span>●</span>';
+							item += '	<a href="javascript:void(0)" onclick="openArticle('+v.Article_ID+')">'+v.Article_Title+'</a>';
+							item += '</p>';
+							
+							$(".codeRecom").append(item);
+						});
+						
+						// 请求推荐文章数据
+						queryArticleRecomData();
+					}
+				});
+			}
+			
+			// 请求推荐文章数据
+			function queryArticleRecomData(){
+				$.ajax({
+					type : "POST",
+					url: "PageAction?opeType=queryRecomData&pageId=1&pageCount=10&contentLength=0&textLength=0",
+					dataType:"json",
+					success: function(data) {
+						console.info(data);
+						
+						$.each(data.articleData,function(k,v){
+							var item = '';
+						  	item += '<p>';
+						  	item += '	<span>●</span>';
+							item += '	<a href="javascript:void(0)" onclick="openArticle('+v.Article_ID+')">'+v.Article_Title+'</a>';
+							item += '</p>';
+							
+							$("#articleRecom").append(item);
+						});
+						
+						// 请求推荐图书数据
+						queryBookRecomData();
+					}
+				});
+			}
+			
+			
+			// 请求推荐图书数据
+			function queryBookRecomData(){
+				$.ajax({
+					type : "POST",
+					url: "BookAction?opeType=queryPage&pageId=1&pageCount=3&typeId=0",
+					dataType:"json",
+					success: function(data) {
+						$.each(data.bookData,function(k,v){
+							var item = '';
+							item += '<div class="item">';
+							item += '	<img src="'+v.Book_Cover+'" class="ui avatar image" />';
+							item += '	<div class="content">';
+							item += '		<div class="header">'+v.Book_Name+'</div>';
+							//item += '		'+v.Book_Abstract;
+							item += '	</div>';
+							item += '</div>';
+							
+				        	$("#bookRecom").append(item);
+						});
+						
+						// 请求标签数据
+						queryLableData();
+					}
+				});
+			}
+			
+			// 请求标签数据
+			function queryLableData(){
+				$.ajax({
+					type : "POST",
+					url: "ClassifyAction?opeType=queryPage&pageId=1&pageCount=1000&fCode=4",
+					dataType:"json",
+					success: function(data) {
+						console.info(data);
+						// 添加数据
+						$.each(data.classifyData,function(k,v){
+							var item = '<a id="lable'+v.Sort_ID+'" class="tagadelic level1" title="" rel="tag" href="javascript:void(0)" onclick="queryLikeLableLength(\''+v.Sort_Name+'\')">'+v.Sort_Name+'</a>';
+							$("#lableItems").append(item);
+						});
+					}
+				});
+			}
+			
+		</script>
+	</head>  
+	<body>  
+		
+		
+		<div class="container bs-docs-container">
+			<!-- 版头 -->
+			<div class="row pageTitle">
+				<span class="logo">
+					<a rel="home" title="Just do IT" href="index.html">
+						<b class="bclass">Just do IT</b>
+					</a>
+					<i>专注于web前端开发，专注于用户体验</i> 
+				</span>
+				<span class="newsearch">
+					<b class="search-liaosheji" style=""></b>
+					<input id="s" class="input" type="text" style="color:#999" placeholder="搜索小贱鸡？"  />
+					<button id="searchsubmit" class="btn">搜索</button>
+				</span>
+			</div>
+			<!-- 菜单栏 -->
+			<div class="row" style="margin-top:10px;">
+				<header class="navbar navbar-inverse bs-docs-nav" role="banner">
+					<div class="container">
+						<div class="navbar-header">
+							<span class="navTips">网站导航</span>
+							<button class="navbar-toggle" data-target=".bs-navbar-collapse" data-toggle="collapse" type="button">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+						<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+							<ul class="nav navbar-nav">
+								<li><a href="index.html">首页</a></li>
+								<li><a href="product.html">产品</a></li>
+					      		<li><a href="design.html">设计</a></li>
+					      		<li><a href="front.html">前端</a></li>
+					      		<li><a href="code.html">代码笔记</a></li>
+					      		<li><a href="joy.html">读书乐趣</a></li>
+					      		<li><a href="about.html">关于我</a></li>
+							</ul>
+							<!-- <ul style="background-color: #48C9B0;" class="nav navbar-nav navbar-right">
+								<li>
+								<a class="about" style="text-shadow:0px 0px 0px #ffffff;" href="../about">关于</a>
+								</li>
+							</ul> -->
+						</nav>
+					</div>
+				</header>
+			</div>
+		
+			<!-- 内容 -->
+			<div class="row">
+				<div id="articleItems" class="col-md-8" role="main">
+					<!-- 内容表头部分 -->
+					<img style="display:none;" src="image/running_banner.png" class="img-responsive contentTitle" xsalt="Responsive image"></img>
+					
+					<!-- 左侧内容部分 -->
+					<div class="pagination" id="pagination"></div>
+				</div>
+				<div class="col-md-4 newLeftDiv">
+					<!-- box div -->
+					<div class="boxDiv">
+						<ul class="topic">
+							<li><a onclick="queryLikeLableLength('视觉设计')" href="javascript:void(0)">视觉设计</a></li>
+							<li><a onclick="queryLikeLableLength('扁平化')" href="javascript:void(0)">扁平化</a></li>
+							<li><a onclick="queryLikeLableLength('IOS风格')" href="javascript:void(0)">IOS风格</a></li>
+							<li><a onclick="queryLikeLableLength('Nodejs')" href="javascript:void(0)">Node.js</a></li>
+							<li><a onclick="queryLikeLableLength('设计趋势')" href="javascript:void(0)">设计趋势</a></li>
+							<li><a onclick="queryLikeLableLength('javascript')" href="javascript:void(0)">javascript</a></li>
+							<li><a onclick="queryLikeLableLength('HTML5')" href="javascript:void(0)">HTML5</a></li>
+							<li><a onclick="queryLikeLableLength('CSS3')" href="javascript:void(0)">CSS3</a></li>
+							<li><a onclick="queryLikeLableLength('移动端')" href="javascript:void(0)">移动端</a></li>
+						</ul>
+					</div>
+					
+					<!-- 图片 div -->
+					<div class="boxDiv">
+						<img src="image/20140211112127438-385x220.png" class="img-responsive " xsalt="Responsive image"></img>
+					</div>
+					
+					<!-- 热门文章 -->
+					<div class="ui segment ">
+					  	<h3 class="ui left floated header">热门文章</h3>
+					  	<h3 class="ui right floated header"><a target="_blank" style="color:#333;" href="more.html">更多</a></h3>
+					  	<div class="ui clearing divider"></div>
+					  	<div id="articleRecom" class="ui animated list">
+					  	
+						</div>
+					</div>
+					
+					<!-- 经典笔记 -->
+					<div class="ui segment">
+					  	<h3 class="ui left floated header">经典笔记</h3>
+					  	<h3 class="ui right floated header"><a target="_blank" style="color:#333;" href="notemore.html">更多</a></h3>
+					  	<div class="ui clearing divider"></div>
+					  	<div class="codeRecom ui animated list">
+					  	
+						</div>
+					</div>
+					
+					<!-- 精品书籍 -->
+					<div class="ui segment">
+					  	<h3 class="ui left floated header">精品书籍</h3>
+					  	<h3 class="ui right floated header"><a target="_blank" style="color:#333;" href="joy.html">更多</a></h3>
+					  	<div class="ui clearing divider"></div>
+					  	<div class="ui animated list">
+					  	</div>
+					  	<div id="bookRecom" class="ui selection list">
+						  
+						</div>
+					</div>
+					
+					
+					
+					<!-- 对外链接 -->
+					<div class="ui segment">
+					    <h3 class="ui left floated header">对外链接</h3>
+					    <div class="ui clearing divider"></div>
+					    <div id="foreign" class="ui animated list topic_list">
+					    	<ul>
+								<!-- glyphicon-thumbs-up -->
+								<li><span class="glyphicon glyphicon-hand-right"></span><a target="_blank" href="http://www.alloyteam.com">腾讯 Web-前端端 AlloyTeam 团队</a></li>
+								<li><span class="glyphicon glyphicon-hand-right"></span><a target="_blank" href="http://cdc.tencent.com">腾讯 CDC-体验设计中心</a></li>
+								<li><span class="glyphicon glyphicon-hand-right"></span><a target="_blank" href="http://isux.tencent.com">腾讯 ISUX-社交用户体验中心</a></li>
+								<li><span class="glyphicon glyphicon-hand-right"></span><a target="_blank" href="http://mxd.tencent.com">腾讯 MXD-移动互联网设计中心</a></li>
+								<li><span class="glyphicon glyphicon-hand-right"></span><a target="_blank" href="http://beforweb.com">Be For Web 为网而生</a></li>
+								<li><span class="glyphicon glyphicon-hand-right"></span><a target="_blank" href="http://www.w3cfuns.com">W3Cfuns 前端开发互动平台</a></li>
+								<li><span class="glyphicon glyphicon-hand-right"></span><a target="_blank" href="http://www.uisdc.com">优设 优秀网页设计联盟</a></li>
+								<li><span class="glyphicon glyphicon-hand-right"></span><a target="_blank" href="http://5m3d.com">5迷3道 HTML5和CSS3的真材实料</a></li>
+							</ul>
+					    </div>
+					</div>
+					
+					<!-- 话题碎片 -->
+					<div class="ui segment">
+					    <h3 class="ui left floated header">话题碎片</h3>
+					    <div class="ui clearing divider"></div>
+					    <div id="lableItems" class="ui animated list topic_list">
+					    
+					    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<footer class="bs-footer" role="contentinfo">
+			<br/><br/><br/><br/><br/><br/><br/>
+		</footer>
+		
+		
+		<script type="text/javascript">  
+			// 初始化菜单折叠组件
+			$('#myCollapsible').collapse({
+			  toggle: false
+			});
+		</script>  
+		
+	</body>  
+</html>  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
